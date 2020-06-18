@@ -38,6 +38,6 @@ Also make sure that you have an active account with [Datadog](https://app.datado
 
 * Instructions are provided in the [Datadog portal](https://app.datadoghq.com/) 
 
-<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-1.png" width="300" height="300"></a>
+<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-1.png"></a>
 
 1. 

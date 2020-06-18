@@ -33,3 +33,9 @@ UBUNTU_CODENAME=bionic
 ```
 
 Also make sure that you have an active account with [Datadog](https://app.datadoghq.com/). 
+
+## Installing the agent on the OS
+
+* Instructions are provided in the [Datadog portal](https://app.datadoghq.com/) 
+
+1. 

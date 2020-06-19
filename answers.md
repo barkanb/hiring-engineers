@@ -58,7 +58,7 @@ I will also add "developer" notes that should be considered outside of the custo
 1. One line install: 
 
 	```
-	$ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=8c550767f7a781935fcd14dac889d7dc bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+	$ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 	```
 
 	The portal will provide a command that will incorporate the right API key. 
@@ -351,8 +351,8 @@ The interval is set in the configuration file and not in the python script.
 	from datadog import initialize, api
 
 	options = {
-	    'api_key': '8c550767f7a781935fcd14dac889d7dc',
-	    'app_key': '6dcf98bed5d32a0b6bddb30ddb1108e75a22d4e7'
+	    'api_key': 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+	    'app_key': 'YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY'
 	}
 
 	initialize(**options)

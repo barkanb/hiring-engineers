@@ -207,7 +207,7 @@ I will also add "developer" notes that should be considered outside of the custo
 
 	* Example: 
 
-		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="50%" height="50%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="50%" height="50%"></a>
 
 6. Restart the agent service.
 
@@ -221,4 +221,44 @@ I will also add "developer" notes that should be considered outside of the custo
   		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="80%" height="80%"></a>
 
 
-8. 
+
+## Collecting Metrics- Custom Agent Check: 
+
+1. In order to create a custom check, we need to create a file that can gather and send the information.
+	For this example I have created a Python script that generates a random number and sends it to the portal. 
+
+	* Make sure that the Datadog python package is installed. 
+
+	The script bellow will use the Datadog library to send a random number between 0 and 1000. 
+
+	```
+	# the following try/except block will make the custom check compatible with any Agent version
+	try:
+	    # first, try to import the base class from new versions of the Agent...
+	    from datadog_checks.base import AgentCheck
+	except ImportError:
+	    # ...if the above failed, the check is running in Agent version < 6.6.0
+	    from checks import AgentCheck
+
+	import random
+
+	# content of the special variable __version__ will be shown in the Agent status page
+	__version__ = "1.0.0"
+
+	class HelloCheck(AgentCheck):
+	    def check(self, instance):
+	        self.gauge('my_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+    ```  
+
+2. Place the script in /etc/datadog-agent/checks.d/
+   I have named the file custom_check.py.
+
+3. Place a yaml configuration file for the custom check at /etc/datadog-agent/conf.d 
+   The name of the file needs to be the same as the script file, hence we will create a file named custom_check.yaml. 
+
+4. In order to set an interval we will populte the file with the min_collection_interval attribute. 
+
+	```
+	instances:
+  	  - min_collection_interval: 45
+    ```

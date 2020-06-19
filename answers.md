@@ -314,6 +314,10 @@ The interval is set in the configuration file and not in the python script.
 
 3. Script to create the dashbord: 
 
+	**Notice the following**
+	- API and APP keys are added to the script. 
+	- The graphs (widgets) are added as a list that includes the metrics, name and other usefull information for display. 
+
 	```
 	from datadog import initialize, api
 
@@ -376,8 +380,30 @@ The interval is set in the configuration file and not in the python script.
 	                     description=description,
 	                     is_read_only=is_read_only,
 	                     notify_list=notify_list,
-	                     template_variables=template_variables #,
-	                     #template_variable_presets=saved_views
+	                     template_variables=template_variables
 	                     )
 	```
+
+4. Check the widgets on the newly created dashbord- 15 min intervals. 
+	The following image provides an example for how the graphs should look like, please notice that the inteval can be chnaged on top. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-3.png" width="60%" height="60%"></a>
+
+5. Once the interval is changed you will see the following dashboard.
+	Notice that the rollup widget will might not display anything since the values are gathered at the hour while our interval window is 15 minutes.
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-4.png" width="60%" height="60%"></a>
+
+6. The widget can be accessed individually to provide more information, as shown below: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-5.png" width="60%" height="60%"></a>
+
+   **Bonus Notes**
+   The anomaly metric can help in identifying and displaying when the values are diviating from the regular plot of the values. 
+   In the following SQL connection grapth we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standart value plot. 
+
+   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png" width="60%" height="60%"></a>
+
+
+
 

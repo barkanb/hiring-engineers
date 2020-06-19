@@ -7,32 +7,38 @@ I will also add "developer" notes that should be considered outside of the custo
 
 ## Prerequisites 
 
-For the following instructions Ubuntu running on Vagrant was used. 
+* For the following instructions Ubuntu running on Vagrant was used. 
 
-```
-Linux vagrant 4.15.0-58-generic #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
-```
+	```
+	Linux vagrant 4.15.0-58-generic #64-Ubuntu SMP Tue Aug 6 11:12:41 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+	```
 
-```
-DISTRIB_ID=Ubuntu
-DISTRIB_RELEASE=18.04
-DISTRIB_CODENAME=bionic
-DISTRIB_DESCRIPTION="Ubuntu 18.04.3 LTS"
-NAME="Ubuntu"
-VERSION="18.04.3 LTS (Bionic Beaver)"
-ID=ubuntu
-ID_LIKE=debian
-PRETTY_NAME="Ubuntu 18.04.3 LTS"
-VERSION_ID="18.04"
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-VERSION_CODENAME=bionic
-UBUNTU_CODENAME=bionic
-```
+	```
+	DISTRIB_ID=Ubuntu
+	DISTRIB_RELEASE=18.04
+	DISTRIB_CODENAME=bionic
+	DISTRIB_DESCRIPTION="Ubuntu 18.04.3 LTS"
+	NAME="Ubuntu"
+	VERSION="18.04.3 LTS (Bionic Beaver)"
+	ID=ubuntu
+	ID_LIKE=debian
+	PRETTY_NAME="Ubuntu 18.04.3 LTS"
+	VERSION_ID="18.04"
+	HOME_URL="https://www.ubuntu.com/"
+	SUPPORT_URL="https://help.ubuntu.com/"
+	BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+	PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+	VERSION_CODENAME=bionic
+	UBUNTU_CODENAME=bionic
+	```
 
-Also make sure that you have an active account with [Datadog](https://app.datadoghq.com/). 
+* For integration purposes MySQL was installed on the OS. 
+
+	```
+	mysql  Ver 14.14 Distrib 5.7.30, for Linux (x86_64) using  EditLine wrapper
+	```
+
+* Also make sure that you have an active account with [Datadog](https://app.datadoghq.com/). 
 
 ## Installing the agent on the OS
 
@@ -73,4 +79,32 @@ Also make sure that you have an active account with [Datadog](https://app.datado
 
 4. The machine should appear in the portal's main page and the host map: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="80%" height="80%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-3.png" width="80%" height="80%"></a>
+
+
+## Collecting Metrics:
+
+1. Adding tags to the Agent can be done through the config file at /etc/datadog-agent/datadog.yaml. 
+	The file will include the API key and can hold other relavant tags. 
+	I have designated a hostname and added an 'anviorment' and 'machineGourp' tags.  
+
+	```
+	hostname: BorisMachine
+
+	tags:
+ 	  - environment:sales-env
+ 	  - machineGroup:boris1
+	```
+
+	- Yaml files are extremly sensitive to syntax and stracture issues, it is recomanded to back up the file before changing or adding anything to it. 
+	
+2. Restart the agent service.
+
+	```
+	sudo service datadog-agent restart
+	```
+
+3. Make sure that the new information is provided in the host map. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-4.png" width="80%" height="80%"></a>
+

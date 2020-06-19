@@ -402,7 +402,29 @@ The interval is set in the configuration file and not in the python script.
    The anomaly metric can help in identifying and displaying when the values are diviating from the regular plot of the values. 
    In the following SQL connection grapth we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standart value plot. 
 
-   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png" width="60%" height="60%"></a>
+   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png"></a>
+
+   	For more information please refer to the [online documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview). 
+
+7. To share the graphs, use the sharing option provided on the dashboard. You can use the '@' notation to send an email. 
+
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-7.png"></a>
+
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-8.png"></a>
+
+ 	* The email will look like this: 
+
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-9.png"></a>
+
+ 	* It will also create an event to show that an item was shared: 
+
+ 	 <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-10.png"></a>
+
+
+
+
+
+
 
 
 

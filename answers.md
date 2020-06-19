@@ -483,6 +483,47 @@ The interval is set in the configuration file and not in the python script.
 
 
 
+##Collecting APM Data:
+
+1. To trace the provided application we will use Datadog's package - ddtrace. We can use pip install to get the package on the machine. 
+
+	```
+	pip install ddtrace
+	```
+
+	To get the instructions please navigate to the APN tab as shown below: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-1.png" width="60%" height="60%"></a>
+
+
+2. In our usecase we will trace a Flask application. (Make sure that Flask is installed and runs the application correctly). 
+	
+	The following command will trace the application as it runs: 
+	```
+	ddtrace-run python app.py
+	```
+
+	Running the command will provide the following: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-2.png" width="60%" height="60%"></a>
+
+
+3. Access to the application routes will trigger traces. 
+
+	* Triggering the app: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-3.png"></a>
+
+	* ddtrace output as app is triggered: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-4.png" width="60%" height="60%"></a>
+
+4. Traces will appear in the Datadog portal: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-5.png" width="60%" height="60%"></a>
+
+
+
 
 
 

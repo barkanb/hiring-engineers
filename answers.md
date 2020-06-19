@@ -418,7 +418,74 @@ The interval is set in the configuration file and not in the python script.
 
  	* It will also create an event to show that an item was shared: 
 
- 	 <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-10.png"></a>
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-10.png"></a>
+
+##Monitoring Data
+
+1. In order to create a metric monitor:
+   - Access the monitor tab.
+   - Click on "New Monitor".
+   - Create a new metric monitor. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-1.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-2.png" width="60%" height="60%"></a>
+
+2. Create this monitor to look into the values of my_metric and define alerts based on threshhold values. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-3.png" width="60%" height="60%"></a>
+
+3. Set alert conditions as provided in the screenshot below: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-4.png" width="60%" height="60%"></a>
+
+4. Customize the alerts to reflect the type of alert and provide alert information. 
+	
+	* Tags could be used to create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+	  Tags could also be used to display alert information such as the host and the value. 
+
+	  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-5.png" width="60%" height="60%"></a>
+
+5. Set email notification and test it: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-7.png" width="60%" height="60%"></a>
+
+	The emails will look as follows (test emails will say TEST):
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-8.png" width="60%" height="60%"></a>
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-9.png" width="60%" height="60%"></a>
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-10.png" width="60%" height="60%"></a>
+
+
+6. Scheduled downtimes for this monitor by going to the "Manage downtime" section:
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-1.png" width="60%" height="60%"></a>
+
+7. Set the information for downtime on the monitor we just setup. 
+	It will need to items since we want to schedule downtime durting the week and the weekend. 
+
+	* From 7pm to 9am daily on M-F. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-2.png" width="60%" height="60%"></a>
+
+	* Saturday and Sunday. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-3.png" width="60%" height="60%"></a>
+
+	* Each of the items can include a message. Example below: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-4.png" width="60%" height="60%"></a>
+
+		- Email notification:
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-5.png" width="60%" height="60%"></a>
+
+
+
+
+
+
 
 
 

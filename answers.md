@@ -297,7 +297,7 @@ The interval is set in the configuration file and not in the python script.
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-1.png" width="40%" height="40%"></a>
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-2.png" width="40%" height="40%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-2.png" width="60%" height="60%"></a>
 
 
 
@@ -312,5 +312,72 @@ The interval is set in the configuration file and not in the python script.
 	* Custom metric my_metric the rollup function applied, sums up all the points for the past hour : avg:my_metric{*}.rollup(\"sum\", 3600)
 		- Gets the sum of my_metric for each hour. 
 
-3. 
+3. Script to create the dashbord: 
+
+	```
+	from datadog import initialize, api
+
+	options = {
+	    'api_key': '8c550767f7a781935fcd14dac889d7dc',
+	    'app_key': '6dcf98bed5d32a0b6bddb30ddb1108e75a22d4e7'
+	}
+
+	initialize(**options)
+
+	title = 'Timeboard v2'
+	widgets = [
+	{
+	    'definition': 
+	    {
+	        'type': 'timeseries',
+	        'requests': [
+	            {'q': 'avg:my_metric{*}'}
+	        ],
+	        'title': 'Custom metric my_metric'
+	    }
+	},{
+	    'definition': 
+	    {
+	        'type': 'timeseries',
+	        'requests': [
+	            {'q': 'anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')'}     
+	        ],
+	        'title': 'MySQL connwctions'
+	    }
+	},{
+	    'definition': 
+	    {
+	        'type': 'timeseries',
+	        'requests': [
+	            {'q': 'avg:my_metric{*}.rollup(\"sum\", 3600)'}     
+	        ],
+	        'title': 'Custom metric my_metric the rollup function applied, sums up all the points for the past hour'
+	    }
+	}
+	]
+	layout_type = 'ordered'
+	description = 'A dashboard with custom metric information'
+	is_read_only = True
+	notify_list = ['barkanb@gmail.com']
+	template_variables = [{
+	    'name': 'host1',
+	    'prefix': 'host',
+	    'default': 'my-host'
+	}]
+
+	saved_view = [{
+	    'name': 'Saved views for hostname 2',
+	    'template_variables': [{'name': 'host', 'value': '<HOSTNAME_2>'}]}
+	]
+
+	api.Dashboard.create(title=title,
+	                     widgets=widgets,
+	                     layout_type=layout_type,
+	                     description=description,
+	                     is_read_only=is_read_only,
+	                     notify_list=notify_list,
+	                     template_variables=template_variables #,
+	                     #template_variable_presets=saved_views
+	                     )
+	```
 

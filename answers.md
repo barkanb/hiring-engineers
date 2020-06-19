@@ -39,7 +39,7 @@ Also make sure that you have an active account with [Datadog](https://app.datado
 * Instructions are provided in the [Datadog portal](https://app.datadoghq.com/) 
 
 <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-1.png" width="50%" height="50%"></a>
-<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="50%" height="50%"></a>
+<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="80%" height="80%"></a>
 
 1. One line install: 
 
@@ -51,12 +51,16 @@ Also make sure that you have an active account with [Datadog](https://app.datado
 
 2. Make sure that the agent was installed correctly and the following message is displayed: 
 
-	```Your Agent is running and functioning properly. It will continue to run in the
-	background and submit metrics to Datadog.```
+	```
+	Your Agent is running and functioning properly. It will continue to run in the
+	background and submit metrics to Datadog.
+	```
 
-	3. To check the status of the agent please run the following: 
+3. To check the status of the agent please run the following: 
 
-	```sudo service datadog-agent status```
+	```
+	sudo service datadog-agent status
+	```
 
 	Response: 
 	```
@@ -65,6 +69,8 @@ Also make sure that you have an active account with [Datadog](https://app.datado
 	   Active: active (running) since Fri 2020-06-19 00:04:16 UTC; 3min 23s ago
 	 Main PID: 2344 (agent)
 	    Tasks: 9 (limit: 1109)
-	   CGroup: /system.slice/datadog-agent.service
-	           └─2344 /opt/datadog-agent/bin/agent/agent run -p /opt/datadog-agent/run/agent.pid
            ```
+
+4. The machine should appear in the portal's main page and the host map: 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="80%" height="80%"></a>

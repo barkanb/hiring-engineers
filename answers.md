@@ -345,6 +345,7 @@ The interval is set in the configuration file and not in the python script.
 	- The graphs (widgets) are added as a list that includes the metrics (as identified above in section 2, name and other useful information for display. 
 
 
+
 	```python
 	from datadog import initialize, api
 
@@ -411,41 +412,44 @@ The interval is set in the configuration file and not in the python script.
 	                     )
 	```
 
-4. Check the widgets on the newly created dashboard- 15 min intervals. 
+4. Check the widgets on the newly created dashboard- 15 min intervals.
+
 	The following image provides an example for how the graphs should look like, please notice that the interval can be changed on top. 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-3.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-3.png" width="70%" height="70%"></a>
 
 5. Once the interval is changed you will see the following dashboard.
-	Notice that the rollup widget will might not display anything since the values are gathered at the hour while our interval window is 15 minutes.
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-4.png" width="60%" height="60%"></a>
+	Notice that the rollup widget might not display anything since the values are gathered at the hour while our interval window is 15 minutes.
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-4.png" width="70%" height="70%"></a>
 
 6. The widget can be accessed individually to provide more information, as shown below: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-5.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-5.png" width="70%" height="70%"></a>
 
-   **Bonus Notes**
-   The anomaly metric can help in identifying and displaying when the values are deviating from the regular plot of the values. 
-   In the following SQL connection graph we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standard value plot. 
+**Bonus Notes**
 
-   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png"></a>
+The anomaly metric can help in identifying and displaying deviating values from the regular plot of the values. 
+In the following SQL connection graph we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standard value plot. 
+
+<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png"></a>
 
    	For more information please refer to the [online documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview). 
 
 7. To share the graphs, use the sharing option provided on the dashboard. You can use the '@' notation to send an email. 
 
- 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-7.png"></a>
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-7.png" width="70%" height="70%"></a>
 
- 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-8.png"></a>
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-8.png" width="70%" height="70%"></a>
 
  	* The email will look like this: 
 
- 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-9.png"></a>
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-9.png" width="70%" height="70%"></a>
 
  	* It will also create an event to show that an item was shared: 
 
- 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-10.png"></a>
+ 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-10.png" width="70%" height="70%"></a>
 
 ##Monitoring Data
 

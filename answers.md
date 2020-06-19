@@ -49,13 +49,16 @@ I will also add "developer" notes that should be considered outside of the custo
 
 * Instructions are provided in the [Datadog portal](https://app.datadoghq.com/) 
 
-<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-1.png" width="50%" height="50%"></a>
-<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="80%" height="80%"></a>
+		a. Integration Tab
+		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-1.png" width="40%" height="40%"></a>
+
+		b. Ubuntu instructions. 
+		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-2.png" width="90%" height="90%"></a>
 
 1. One line install: 
 
 	```
-	DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=8c550767f7a781935fcd14dac889d7dc bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
+	$ DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=8c550767f7a781935fcd14dac889d7dc bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 	```
 
 	The portal will provide a command that will incorporate the right API key. 
@@ -63,28 +66,29 @@ I will also add "developer" notes that should be considered outside of the custo
 2. Make sure that the agent was installed correctly and the following message is displayed: 
 
 	```
-	Your Agent is running and functioning properly. It will continue to run in the
-	background and submit metrics to Datadog.
+	Your Agent is running and functioning properly. It will continue to run in the background and submit metrics to Datadog.
 	```
 
 3. To check the status of the agent please run the following: 
 
 	```
-	sudo service datadog-agent status
+	$ sudo service datadog-agent status
 	```
 
 	Response: 
 	```
-		● datadog-agent.service - Datadog Agent
-	   Loaded: loaded (/lib/systemd/system/datadog-agent.service; enabled; vendor preset: enabled)
-	   Active: active (running) since Fri 2020-06-19 00:04:16 UTC; 3min 23s ago
-	 Main PID: 2344 (agent)
-	    Tasks: 9 (limit: 1109)
+	● datadog-agent.service - Datadog Agent
+	Loaded: loaded (/lib/systemd/system/datadog-agent.service; enabled; vendor preset: enabled)
+	Active: active (running) since Fri 2020-06-19 00:04:16 UTC; 3min 23s ago
+	Main PID: 2344 (agent)
+	Tasks: 9 (limit: 1109)
            ```
 
 4. The machine should appear in the portal's main page and the host map: 
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-3.png" width="80%" height="80%"></a>
+
+
 
 
 ## Collecting Metrics- Adding Tags:
@@ -101,15 +105,16 @@ I will also add "developer" notes that should be considered outside of the custo
  	  - machineGroup:boris1
 	```
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="50%" height="50%"></a>
+	- The file will look similar to this: 
+		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="55%" height="55%"></a>
 
 
-	- Yaml files are extremely sensitive to syntax and structure issues, it is recommended to back up the file before changing or adding anything to it. 
+	- **Yaml files are extremely sensitive** to syntax and structure issues, it is recommended to back up the file before changing or adding anything to it. 
 	
 2. Restart the agent service.
 
 	```
-	sudo service datadog-agent restart
+	$ sudo service datadog-agent restart
 	```
 
 3. Make sure that the new information is provided in the host map. 
@@ -117,12 +122,14 @@ I will also add "developer" notes that should be considered outside of the custo
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-4.png" width="80%" height="80%"></a>
 
 
+
+
 ## Collecting Metrics- MySQL Integration: 
 
 * Follow the instructions on the portal to integrate with MySQL. 
   The instructions bellow are for MySQL 8.0+, for other version please refer to the portal for instructions. 
 
-  		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-6.png" width="80%" height="80%"></a>
+  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-6.png" width="80%" height="80%"></a>
 
 
 1. Create a user with proper permissions to be used by the agent. 

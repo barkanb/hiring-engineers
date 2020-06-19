@@ -218,8 +218,8 @@ I will also add "developer" notes that should be considered outside of the custo
 7. Make sure that the new information is provided in the host map and that the service is communicating. 
 
 	
-  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-8.png" width="50%" height="50%"></a>
-  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="50%" height="50%"></a>
+  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-8.png" width="70%" height="70%"></a>
+  	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="70%" height="70%"></a>
 
 
 
@@ -248,7 +248,7 @@ I will also add "developer" notes that should be considered outside of the custo
 
 	class HelloCheck(AgentCheck):
 	    def check(self, instance):
-	        self.gauge('my_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
+	        self.gauge('custom_check.my_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
     ```  
 
 2. Place the script in /etc/datadog-agent/checks.d/
@@ -263,3 +263,17 @@ I will also add "developer" notes that should be considered outside of the custo
 	instances:
   	  - min_collection_interval: 45
     ```
+
+5. Restart the agent. 
+
+	```
+	sudo service datadog-agent restart
+	```
+
+6. Make sure that the check is working: 
+
+	```
+	sudo -u dd-agent -- datadog-agent check <CHECK_NAME>
+	```
+
+     <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-10.png" width="70%" height="70%"></a>

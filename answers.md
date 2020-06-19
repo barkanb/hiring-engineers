@@ -82,7 +82,7 @@ I will also add "developer" notes that should be considered outside of the custo
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-3.png" width="80%" height="80%"></a>
 
 
-## Collecting Metrics:
+## Collecting Metrics- Adding Tags:
 
 1. Adding tags to the Agent can be done through the config file at /etc/datadog-agent/datadog.yaml. 
 	The file will include the API key and can hold other relavant tags. 
@@ -96,6 +96,9 @@ I will also add "developer" notes that should be considered outside of the custo
  	  - machineGroup:boris1
 	```
 
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="50%" height="50%"></a>
+
+
 	- Yaml files are extremly sensitive to syntax and stracture issues, it is recomanded to back up the file before changing or adding anything to it. 
 	
 2. Restart the agent service.
@@ -108,3 +111,96 @@ I will also add "developer" notes that should be considered outside of the custo
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-4.png" width="80%" height="80%"></a>
 
+
+## Collecting Metrics- MySQL Integration: 
+
+* Follow the instructions on the portal to integrate with MySQL. 
+  The instructions bellow are for MySQL 8.0+, for other version please refer to the portal for instructions. 
+
+1. Create a user with proper permissions to be used by the agent. 
+	* Make sure the agent is installed and running on the machine. 
+
+	```
+	mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
+	Query OK, 0 rows affected (0.00 sec)
+	```
+
+2. Verify user creation with the following commands:
+
+	```
+	mysql> SELECT User FROM mysql.user
+	    -> ;
+	+------------------+
+	| User             |
+	+------------------+
+	| datadog          |
+	| debian-sys-maint |
+	| mysql.session    |
+	| mysql.sys        |
+	| root             |
+	+------------------+
+	``` 
+
+	```
+	mysql -u datadog --password=<UNIQUEPASSWORD> -e "show status" | \
+	grep Uptime && echo -e "\033[0;32mMySQL user - OK\033[0m" || \
+	echo -e "\033[0;31mCannot connect to MySQL\033[0m"
+	```
+
+	```
+	mysql -u datadog --password=<UNIQUEPASSWORD> -e "show slave status" && \
+	echo -e "\033[0;32mMySQL grant - OK\033[0m" || \
+	echo -e "\033[0;31mMissing REPLICATION CLIENT grant\033[0m"
+	```
+3. Grant the user more limited privileges:
+
+	```
+	mysql> GRANT REPLICATION CLIENT ON *.* TO 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+	Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+	mysql> GRANT PROCESS ON *.* TO 'datadog'@'localhost';
+	Query OK, 0 rows affected (0.00 sec)
+	```
+
+	```
+	mysql> ALTER USER 'datadog'@'localhost' WITH MAX_USER_CONNECTIONS 5;
+	Query OK, 0 rows affected (0.00 sec)
+	```
+
+4. If enabled, metrics can be collected from the performance_schema database by granting an additional privilege:
+
+	```
+	mysql> show databases like 'performance_schema';
+	+-------------------------------+
+	| Database (performance_schema) |
+	+-------------------------------+
+	| performance_schema            |
+	+-------------------------------+
+	1 row in set (0.00 sec)
+
+	mysql> GRANT SELECT ON performance_schema.* TO 'datadog'@'localhost';
+	Query OK, 0 rows affected (0.00 sec)
+	```
+
+5. Configure the agent to collect and send data with a yaml configuration file at /etc/datadog-agent/conf.d/mysql.d/conf.yaml
+
+	```
+	init_config:
+
+	instances:
+	  - server: 127.0.0.1
+	    user: datadog
+	    pass: "<YOUR_CHOSEN_PASSWORD>" # from the CREATE USER step earlier
+	    port: "<YOUR_MYSQL_PORT>" # e.g. 3306
+	    options:
+	      replication: false
+	      galera_cluster: true
+	      extra_status_metrics: true
+	      extra_innodb_metrics: true
+	      extra_performance_metrics: true
+	      schema_size_metrics: false
+      	  disable_innodb_metrics: false
+	```
+
+	*Example: 
+		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="80%" height="80%"></a>

@@ -1,5 +1,10 @@
 These are the answers and the procedures to accomplish all of the tasks provided in the 'hiring-engineers' exercise . 
 
+* Shared [Dashboard](https://p.datadoghq.com/sb/v730f09bg4m43c7e-b6b7ab5e5d58a5079cf2a7c4246d1b32)
+
+
+
+
 ## The Exercise
 
 The answers will be provided as if they are presented as a guide to a client. It will be structured with implementation steps and notes. 
@@ -526,6 +531,11 @@ The interval is set in the configuration file and not in the python script.
 
 
 
+##Final question
+
+Datadog is great in collecting and displaying information for insights. I think it would be beneficial to use these capabilities to track Covid-19 cases across the US or even the world. 
+
+As life feeds are provided by many resources, it might be of great value to study the results through the lenses of Datadog's products. 
 
 
 

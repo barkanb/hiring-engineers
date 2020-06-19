@@ -106,7 +106,8 @@ I will also add "developer" notes that should be considered outside of the custo
 	```
 
 	- The file will look similar to this: 
-		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="55%" height="55%"></a>
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="55%" height="55%"></a>
 
 
 	- **Yaml files are extremely sensitive** to syntax and structure issues, it is recommended to back up the file before changing or adding anything to it. 
@@ -435,7 +436,7 @@ In the following SQL connection graph we can see that the rise in connections is
 
 <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png"></a>
 
-   	For more information please refer to the [online documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview). 
+For more information please refer to the [online documentation](https://docs.datadoghq.com/monitors/monitor_types/anomaly/#overview). 
 
 7. To share the graphs, use the sharing option provided on the dashboard. You can use the '@' notation to send an email. 
 
@@ -604,7 +605,7 @@ In the following SQL connection graph we can see that the rise in connections is
 
 Datadog is great in collecting and displaying information for insights. I think it would be beneficial to use these capabilities to track Covid-19 cases across the US or even the world. 
 
-As life feeds are provided by many resources, it might be of great value to study the results through the lenses of Datadog's products. 
+As live feeds are provided by many resources, it might be of great value to study the results through the lenses of Datadog's products. 
 
 
 

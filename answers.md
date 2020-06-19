@@ -1,9 +1,9 @@
-These are the answers and the proceedures to accomplish all of the tasks provided in the 'hiring-engineers' excersize. 
+These are the answers and the procedures to accomplish all of the tasks provided in the 'hiring-engineers' exercise . 
 
 ## The Exercise
 
-The answers will be provided as if they are presented as a guide to a client. It will be strcutured with implementation steps and notes. 
-I will also add "developer" notes that should be considered outside of the customer scope and they are intended for Datadog reviers. 
+The answers will be provided as if they are presented as a guide to a client. It will be structured with implementation steps and notes. 
+I will also add "developer" notes that should be considered outside of the customer scope and they are intended for Datadog reviews. 
 
 ## Prerequisites 
 
@@ -53,7 +53,7 @@ I will also add "developer" notes that should be considered outside of the custo
 	DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=8c550767f7a781935fcd14dac889d7dc bash -c "$(curl -L https://raw.githubusercontent.com/DataDog/datadog-agent/master/cmd/agent/install_script.sh)"
 	```
 
-	The portal will provide a command that will incoporate the right API key. 
+	The portal will provide a command that will incorporate the right API key. 
 
 2. Make sure that the agent was installed correctly and the following message is displayed: 
 
@@ -85,8 +85,8 @@ I will also add "developer" notes that should be considered outside of the custo
 ## Collecting Metrics- Adding Tags:
 
 1. Adding tags to the Agent can be done through the config file at /etc/datadog-agent/datadog.yaml. 
-	The file will include the API key and can hold other relavant tags. 
-	I have designated a hostname and added an 'anviorment' and 'machineGourp' tags.  
+	The file will include the API key and can hold other relevant tags. 
+	I have designated a hostname and added an 'environment' and 'machineGourp' tags.  
 
 	```
 	hostname: BorisMachine
@@ -99,7 +99,7 @@ I will also add "developer" notes that should be considered outside of the custo
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-5.png" width="50%" height="50%"></a>
 
 
-	- Yaml files are extremly sensitive to syntax and stracture issues, it is recomanded to back up the file before changing or adding anything to it. 
+	- Yaml files are extremely sensitive to syntax and structure issues, it is recommended to back up the file before changing or adding anything to it. 
 	
 2. Restart the agent service.
 
@@ -257,7 +257,7 @@ I will also add "developer" notes that should be considered outside of the custo
 3. Place a yaml configuration file for the custom check at /etc/datadog-agent/conf.d 
    The name of the file needs to be the same as the script file, hence we will create a file named custom_check.yaml. 
 
-4. In order to set an interval we will populte the file with the min_collection_interval attribute. 
+4. In order to set an interval we will populate the file with the min_collection_interval attribute. 
 
 	```
 	instances:
@@ -292,7 +292,7 @@ The interval is set in the configuration file and not in the python script.
 
 ## Visualizing Data:
 
-1. In order to create a dashbord, a script needs to run with an API key and an APP key. 
+1. In order to create a dashboard, a script needs to run with an API key and an APP key. 
 	Navigate to the API tab and get the two keys. 
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-1.png" width="40%" height="40%"></a>
@@ -306,17 +306,17 @@ The interval is set in the configuration file and not in the python script.
 	* Custom metric my_metric : avg:my_metric{*} 
 		- Random number between 0 and 1000. 
 	
-	* MySQL connwctions : anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')
+	* MySQL connections : anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')
 		- Looks at the number of connections, and looks for anomalies with that number. 
 
 	* Custom metric my_metric the rollup function applied, sums up all the points for the past hour : avg:my_metric{*}.rollup(\"sum\", 3600)
 		- Gets the sum of my_metric for each hour. 
 
-3. Script to create the dashbord: 
+3. Script to create the dashboard: 
 
 	**Notice the following**
 	- API and APP keys are added to the script. 
-	- The graphs (widgets) are added as a list that includes the metrics, name and other usefull information for display. 
+	- The graphs (widgets) are added as a list that includes the metrics, name and other useful information for display. 
 
 	```
 	from datadog import initialize, api
@@ -346,7 +346,7 @@ The interval is set in the configuration file and not in the python script.
 	        'requests': [
 	            {'q': 'anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')'}     
 	        ],
-	        'title': 'MySQL connwctions'
+	        'title': 'MySQL connections'
 	    }
 	},{
 	    'definition': 
@@ -384,8 +384,8 @@ The interval is set in the configuration file and not in the python script.
 	                     )
 	```
 
-4. Check the widgets on the newly created dashbord- 15 min intervals. 
-	The following image provides an example for how the graphs should look like, please notice that the inteval can be chnaged on top. 
+4. Check the widgets on the newly created dashboard- 15 min intervals. 
+	The following image provides an example for how the graphs should look like, please notice that the interval can be changed on top. 
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-3.png" width="60%" height="60%"></a>
 
@@ -399,8 +399,8 @@ The interval is set in the configuration file and not in the python script.
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-5.png" width="60%" height="60%"></a>
 
    **Bonus Notes**
-   The anomaly metric can help in identifying and displaying when the values are diviating from the regular plot of the values. 
-   In the following SQL connection grapth we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standart value plot. 
+   The anomaly metric can help in identifying and displaying when the values are deviating from the regular plot of the values. 
+   In the following SQL connection graph we can see that the rise in connections is identified with a red line, that goes out of the shaded line that that designates the standard value plot. 
 
    	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-6.png"></a>
 
@@ -430,7 +430,7 @@ The interval is set in the configuration file and not in the python script.
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-1.png" width="60%" height="60%"></a>
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-2.png" width="60%" height="60%"></a>
 
-2. Create this monitor to look into the values of my_metric and define alerts based on threshhold values. 
+2. Create this monitor to look into the values of my_metric and define alerts based on threshold values. 
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/monitor-3.png" width="60%" height="60%"></a>
 
@@ -463,7 +463,7 @@ The interval is set in the configuration file and not in the python script.
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/time-1.png" width="60%" height="60%"></a>
 
 7. Set the information for downtime on the monitor we just setup. 
-	It will need to items since we want to schedule downtime durting the week and the weekend. 
+	It will need to items since we want to schedule downtime during the week and the weekend. 
 
 	* From 7pm to 9am daily on M-F. 
 
@@ -496,7 +496,7 @@ The interval is set in the configuration file and not in the python script.
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-1.png" width="60%" height="60%"></a>
 
 
-2. In our usecase we will trace a Flask application. (Make sure that Flask is installed and runs the application correctly). 
+2. In our use case we will trace a Flask application. (Make sure that Flask is installed and runs the application correctly). 
 	
 	The following command will trace the application as it runs: 
 	```

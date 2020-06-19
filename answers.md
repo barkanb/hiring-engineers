@@ -205,6 +205,20 @@ I will also add "developer" notes that should be considered outside of the custo
       	  disable_innodb_metrics: false
 	```
 
-	*Example: 
+	* Example: 
 
-		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="80%" height="80%"></a>
+		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="50%" height="50%"></a>
+
+6. Restart the agent service.
+
+	```
+	sudo service datadog-agent restart
+	```
+
+7. Make sure that the new information is provided in the host map and that the service is communicating. 
+
+  		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-8.png" width="80%" height="80%"></a>
+  		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="80%" height="80%"></a>
+
+
+8. 

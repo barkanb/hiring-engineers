@@ -117,6 +117,9 @@ I will also add "developer" notes that should be considered outside of the custo
 * Follow the instructions on the portal to integrate with MySQL. 
   The instructions bellow are for MySQL 8.0+, for other version please refer to the portal for instructions. 
 
+  		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-6.png" width="80%" height="80%"></a>
+
+
 1. Create a user with proper permissions to be used by the agent. 
 	* Make sure the agent is installed and running on the machine. 
 
@@ -203,4 +206,5 @@ I will also add "developer" notes that should be considered outside of the custo
 	```
 
 	*Example: 
+
 		<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="80%" height="80%"></a>

@@ -131,9 +131,9 @@ I will also add "developer" notes that should be considered outside of the custo
 
   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-6.png" width="80%" height="80%"></a>
 
+* Make sure the agent is installed and running on the machine. 
 
 1. Create a user with proper permissions to be used by the agent. 
-	* Make sure the agent is installed and running on the machine. 
 
 	```
 	mysql> CREATE USER 'datadog'@'localhost' IDENTIFIED WITH mysql_native_password by '<UNIQUEPASSWORD>';
@@ -219,32 +219,36 @@ I will also add "developer" notes that should be considered outside of the custo
 
 	* Example: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="50%" height="50%"></a>
+			<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-7.png" width="50%" height="50%"></a>
 
 6. Restart the agent service.
 
 	```
-	sudo service datadog-agent restart
+	$ sudo service datadog-agent restart
 	```
 
 7. Make sure that the new information is provided in the host map and that the service is communicating. 
 
-	
+	- The host should display MySQL related information and other metrics. 
   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-8.png" width="70%" height="70%"></a>
+
+  	- The Status Check should also indicate if the integration is operating correctly. 
   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="70%" height="70%"></a>
+
+
 
 
 
 ## Collecting Metrics- Custom Agent Check: 
 
-1. In order to create a custom check, we need to create a file that can gather and send the information.
+1. In order to create a custom check, we need to create a check file that can gather and send the information.
 	For this example I have created a Python script that generates a random number and sends it to the portal. 
 
 	* Make sure that the Datadog python package is installed. 
 
-	The script bellow will use the Datadog library to send a random number between 0 and 1000. 
+	The script bellow uses the Datadog library to send a random number between 0 and 1000. 
 
-	```
+	```python
 	# the following try/except block will make the custom check compatible with any Agent version
 	try:
 	    # first, try to import the base class from new versions of the Agent...

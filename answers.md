@@ -289,3 +289,28 @@ I will also add "developer" notes that should be considered outside of the custo
 
 **Bonus Notes:**
 The interval is set in the configuration file and not in the python script.  
+
+## Visualizing Data:
+
+1. In order to create a dashbord, a script needs to run with an API key and an APP key. 
+	Navigate to the API tab and get the two keys. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-1.png" width="40%" height="40%"></a>
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-2.png" width="40%" height="40%"></a>
+
+
+
+2. Define the metrics for the new dashboard. 
+	
+	* Custom metric my_metric : avg:my_metric{*} 
+		- Random number between 0 and 1000. 
+	
+	* MySQL connwctions : anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')
+		- Looks at the number of connections, and looks for anomalies with that number. 
+
+	* Custom metric my_metric the rollup function applied, sums up all the points for the past hour : avg:my_metric{*}.rollup(\"sum\", 3600)
+		- Gets the sum of my_metric for each hour. 
+
+3. 
+

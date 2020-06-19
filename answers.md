@@ -277,3 +277,13 @@ I will also add "developer" notes that should be considered outside of the custo
 	```
 
      <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-10.png" width="70%" height="70%"></a>
+
+7. The new check and the relevant information should appear in the host map. 
+	Notice that the name of the file is the namespace for the check "my_metric"
+
+	     <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-11.png" width="70%" height="70%"></a>
+
+	The metric can also be set without a name space. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-12.png" width="40%" height="40%"></a>
+

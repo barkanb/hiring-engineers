@@ -230,9 +230,11 @@ I will also add "developer" notes that should be considered outside of the custo
 7. Make sure that the new information is provided in the host map and that the service is communicating. 
 
 	- The host should display MySQL related information and other metrics. 
+
   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-8.png" width="70%" height="70%"></a>
 
   	- The Status Check should also indicate if the integration is operating correctly. 
+
   	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-9.png" width="70%" height="70%"></a>
 
 
@@ -267,11 +269,10 @@ I will also add "developer" notes that should be considered outside of the custo
 	        self.gauge('custom_check.my_metric', random.randint(0,1000), tags=['TAG_KEY:TAG_VALUE'])
     ```  
 
-2. Place the script in /etc/datadog-agent/checks.d/
-   I have named the file custom_check.py.
+2. Place the script in /etc/datadog-agent/checks.d/ . I have named the file **custom_check.py**.
 
-3. Place a yaml configuration file for the custom check at /etc/datadog-agent/conf.d 
-   The name of the file needs to be the same as the script file, hence we will create a file named custom_check.yaml. 
+3. Place a yaml configuration file for the custom check at /etc/datadog-agent/conf.d   , 
+   The name of the file needs to be the same as the script file, hence we will create a file named **custom_check.yaml**. 
 
 4. In order to set an interval we will populate the file with the min_collection_interval attribute. 
 
@@ -283,28 +284,34 @@ I will also add "developer" notes that should be considered outside of the custo
 5. Restart the agent. 
 
 	```
-	sudo service datadog-agent restart
+	$ sudo service datadog-agent restart
 	```
 
-6. Make sure that the check is working: 
+6. Make sure that the check is working with the following command (replace <CHECK_NAME> with the proper check name as seen in the screenshot): 
 
 	```
-	sudo -u dd-agent -- datadog-agent check <CHECK_NAME>
+	$ sudo -u dd-agent -- datadog-agent check <CHECK_NAME>
 	```
 
      <img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-10.png" width="70%" height="70%"></a>
 
 7. The new check and the relevant information should appear in the host map. 
-	Notice that the name of the file is the namespace for the check "my_metric"
+	Notice that the name of the file is not the one used. The API will determine the name of the namespace and the name of the custom check. 
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-11.png" width="70%" height="70%"></a>
 
-	The metric can also be set without a name space. 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-12.png" width="40%" height="40%"></a>
+	The custom check can also be without the name space. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/agent-12.png" width="50%" height="50%"></a>
+
 
 **Bonus Notes:**
 The interval is set in the configuration file and not in the python script.  
+
+
+
+
 
 ## Visualizing Data:
 
@@ -313,17 +320,20 @@ The interval is set in the configuration file and not in the python script.
 
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-1.png" width="40%" height="40%"></a>
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-2.png" width="60%" height="60%"></a>
+
+	The keys will be masks, but by hovering over the items the keys will be revealed. 
+
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/metric-2.png" width="70%" height="70%"></a>
 
 
 
-2. Define the metrics for the new dashboard. 
+2. Define the metrics for the new dashboard: these will be used in the script below as we build 3 widgets in the new dashboard. 
 	
 	* Custom metric my_metric : avg:my_metric{*} 
-		- Random number between 0 and 1000. 
+		- This will be used to get my_metric information which is a random number between 0 and 1000. 
 	
 	* MySQL connections : anomalies(sum:mysql.net.max_connections{*}, \"basic\", 3, direction=\'above\')
-		- Looks at the number of connections, and looks for anomalies with that number. 
+		- Looks at the number of MySQL connections, and detects anomalies with that number. 
 
 	* Custom metric my_metric the rollup function applied, sums up all the points for the past hour : avg:my_metric{*}.rollup(\"sum\", 3600)
 		- Gets the sum of my_metric for each hour. 
@@ -332,9 +342,10 @@ The interval is set in the configuration file and not in the python script.
 
 	**Notice the following**
 	- API and APP keys are added to the script. 
-	- The graphs (widgets) are added as a list that includes the metrics, name and other useful information for display. 
+	- The graphs (widgets) are added as a list that includes the metrics (as identified above in section 2, name and other useful information for display. 
 
-	```
+
+	```python
 	from datadog import initialize, api
 
 	options = {

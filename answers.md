@@ -538,6 +538,37 @@ In the following SQL connection graph we can see that the rise in connections is
 
 
 2. In our use case we will trace a Flask application. (Make sure that Flask is installed and runs the application correctly). 
+
+	```python
+		from flask import Flask
+		import logging
+		import sys
+
+		# Have flask use stdout as the logger
+		main_logger = logging.getLogger()
+		main_logger.setLevel(logging.DEBUG)
+		c = logging.StreamHandler(sys.stdout)
+		formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+		c.setFormatter(formatter)
+		main_logger.addHandler(c)
+
+		app = Flask(__name__)
+
+		@app.route('/')
+		def api_entry():
+		    return 'Entrypoint to the Application'
+
+		@app.route('/api/apm')
+		def apm_endpoint():
+		    return 'Getting APM Started'
+
+		@app.route('/api/trace')
+		def trace_endpoint():
+		    return 'Posting Traces'
+
+		if __name__ == '__main__':
+		    app.run(host='0.0.0.0', port='5050')
+	```
 	
 	The following command will trace the application as it runs: 
 	```
@@ -546,28 +577,30 @@ In the following SQL connection graph we can see that the rise in connections is
 
 	Running the command will provide the following: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-2.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-2.png" width="80%" height="80%"></a>
+
+	- Notice that ddtrace was called from data-agent library, but it provides the same functionality. 
 
 
 3. Access to the application routes will trigger traces. 
 
 	* Triggering the app: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-3.png"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-3.png" width="50%" height="50%"></a>
 
-	* ddtrace output as app is triggered: 
+	* ddtrace output as the app is triggered: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-4.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-4.png" width="80%" height="80%"></a>
 
 4. Traces will appear in the Datadog portal: 
 
-	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-5.png" width="60%" height="60%"></a>
+	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-5.png" width="80%" height="80%"></a>
 
 
 
 
 
-##Final question
+## Final question
 
 Datadog is great in collecting and displaying information for insights. I think it would be beneficial to use these capabilities to track Covid-19 cases across the US or even the world. 
 

@@ -598,7 +598,10 @@ For more information please refer to the [online documentation](https://docs.dat
 	<img src="https://github.com/barkanb/hiring-engineers/blob/master/Images/trace-5.png" width="80%" height="80%"></a>
 
 
-
+**Bonus Note**
+Services provides the application connections, they can do calculations, queries or jobs. 
+Resources are the available items to be used by a service like static items or databases. 
+ 
 
 
 ## Final question
